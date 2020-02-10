@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JQuery data transfer example</title>
+
+<!--    Import JQUERY -->
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+    <script>
+
+        $(document).ready(function(){
+
+            $('#getbutton').click(function() {
+                $.get('api/movies', function(movies) {
+                    // Do something!
+                    console.log(movies);
+                });
+            });
+
+            $('#postbutton').click(function() {
+                var movie = {
+                    name: "Hunger Names",
+                    year: 2012,
+                    rating: 7
+                };
+
+                $.ajax({
+                    url: "api/movies",
+                    type: "POST",
+                    data: JSON.stringify(movie),
+                    contentType: "application/json",
+                    success: function() {
+                        alert('movie added!');
+                    }
+                });
+            });
+        });
+    </script>
+
+</head>
+<body>
+
+<h1>API TEST</h1>
+<button id="getbutton">GET</button>
+<button id="postbutton">POST</button>
+<input type="text">
+
+</body>
+</html>
